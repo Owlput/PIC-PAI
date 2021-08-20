@@ -1,0 +1,26 @@
+{
+  "name": "pts-container-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev":"nodemon main.js",
+    "start":"node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Owlput/PTS-Container-API.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Owlput/PTS-Container-API/issues"
+  },
+  "homepage": "https://github.com/Owlput/PTS-Container-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
