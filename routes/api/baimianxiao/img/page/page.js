@@ -23,7 +23,7 @@ function getLocalImages(array) {
     if (allFiles[i]) {
       resultArray.push({
         id: `${i}`,
-        src: `/api/baimianxiao/image/${allFiles[i]}`,
+        src: `http://localhost:4000/api/baimianxiao/img/image/${allFiles[i]}`,
       });
     } else {
       return resultArray;
