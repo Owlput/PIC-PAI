@@ -4,6 +4,8 @@ const fs = require("fs");
 
 router.get("/:page", (req, res) => {
   let page = parseInt(req.params.page)
+  res.header("Access-Control-Allow-Origin","http://localhost:3000")
+  res.header("Access-Control-Allow-Methods","GET")
   if (!page || page <= 0) {
     res.status(400).json({"msg":"Illegal page"});
   } else {
@@ -12,7 +14,7 @@ router.get("/:page", (req, res) => {
 });
 
 const pageHandler = (page) => {
-  let imageOrder = [(page - 1) * 10, page * 10];
+  let imageOrder = [(page - 1) * 10, page * 10-1];
   return getLocalImages(imageOrder);
 };
 
@@ -22,8 +24,8 @@ function getLocalImages(array) {
   for (i = array[0]; i <= array[1]; i++) {
     if (allFiles[i]) {
       resultArray.push({
-        id: `${i}`,
-        src: `http://localhost:4000/api/baimianxiao/img/image/${allFiles[i]}`,
+        id: `${i+1}`,
+        src: `http://localhost:4000/image/${allFiles[i]}`,
       });
     } else {
       return resultArray;
