@@ -1,12 +1,11 @@
 const express = require("express")
-const path = require('path')
+const getConfig = require("./config/configHandler")
 
 const app = express()
 
-const PORT = 4000
+const config = getConfig()
 
-app.use("/image/page",require('./page'))
-app.use("/image",require('./image'))
+app.use('/file',require('./express/routes/file'))
+app.use('/baimianxiao',require('./express/routes/baimianxiao'))
 
-app.use(express.static(path.join(__dirname,"public","image")))
-app.listen(PORT,()=>console.log(`Server strated on ${PORT}`))
+app.listen(config.port ,()=>console.log(`Server strated on ${config.port}`))
