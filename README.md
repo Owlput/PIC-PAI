@@ -1,1 +1,2 @@
-# PTS-Containers-API
+# PIC-PAI
+注意！本API仍处于早期构建中，暂时无法在生产环境使用，仅能用于测试用途。如果你想添加更多功能，欢迎提交Pull Request!
