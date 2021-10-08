@@ -14,7 +14,7 @@ router.get("/data/thumbs/all", (req, res) => {
               ],
         }
     }
-    res.set('Access-Control-Allow-Origin',"http://localhost:3000")
+    res.set('Access-Control-Allow-Origin',"https://xn--9wyS51efve.com")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
@@ -50,7 +50,7 @@ router.get("/data/imageData/:uri", (req, res) => {
               ]
         }
     }
-    res.set('Access-Control-Allow-Origin',"http://localhost:3000")
+    res.set('Access-Control-Allow-Origin',"https://xn--9wyS51efve.com")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
