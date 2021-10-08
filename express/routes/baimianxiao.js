@@ -14,7 +14,8 @@ router.get("/data/thumbs/all", (req, res) => {
               ],
         }
     }
-    res.set('Access-Control-Allow-Origin',"*")
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Methods","GET")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
@@ -50,7 +51,8 @@ router.get("/data/imageData/:uri", (req, res) => {
               ]
         }
     }
-    res.set('Access-Control-Allow-Origin',"*")
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Methods","GET")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
