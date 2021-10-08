@@ -14,7 +14,7 @@ router.get("/data/thumbs/all", (req, res) => {
               ],
         }
     }
-    res.set('Access-Control-Allow-Origin',"https://xn--9wyS51efve.com")
+    res.set('Access-Control-Allow-Origin',"*")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
@@ -50,7 +50,7 @@ router.get("/data/imageData/:uri", (req, res) => {
               ]
         }
     }
-    res.set('Access-Control-Allow-Origin',"https://xn--9wyS51efve.com")
+    res.set('Access-Control-Allow-Origin',"*")
     mongo.aggregate(query)
     .then(result => res.json(result))
 })
