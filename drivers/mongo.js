@@ -4,15 +4,28 @@ const mongoConfig = getConfig().mongo
 
 const mongo = new MongoClient(mongoConfig.uri)
 
-module.export =  async function find(req) {
-    try {
-      await client.connect();
-      const db = client.db(req.mongo.db)
-      const collection = db.collection(req.mongo.collection)
-      const result = await collection.findOne(req.mongo.query);
-      return result;
-    } finally {
-      // Ensures that the client will close when you finish/error
-      await client.close();
+exports.find = async function find(req) {
+  try {
+    await mongo.connect();
+    const collection = mongo.db(req.mongo.db).collection(req.mongo.collection)
+    const result = await collection.find(req.mongo.query);
+    return result;
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await mongo.close();
+  }
+}
+exports.aggregate = async function aggregate(req){
+  try {
+    await mongo.connect();
+    const cursor = mongo.db(req.mongo.db).collection(req.mongo.collection).aggregate(req.mongo.pipeline)
+    let result = []
+    for await (const doc of cursor){
+      result.push(doc)
     }
+    return result;
+  } 
+  catch(e) {
+    console.log(e)
+  }
 }
