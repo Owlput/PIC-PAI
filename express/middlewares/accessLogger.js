@@ -3,6 +3,7 @@ const mongo = require('../../drivers/mongo')
 
 async function accessLogger (req, res, next) {
   let request = {
+      mongo:{
     db: "bmx-bedata",
     collection: "accessLog",
     doc:{
@@ -18,7 +19,7 @@ async function accessLogger (req, res, next) {
     server: {
       routeMatched: `${req.route}`,
     },
-}
+}}
   };
   await mongo.insertOne(request)
   next();
