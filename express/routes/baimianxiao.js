@@ -93,5 +93,5 @@ router.get("/data/permitData/all", (req, res) => {
   mongo.aggregate(query).then((result) => res.json(result));
 });
 
-router.use('/data/thumbData/all',require('../middlewares/accessLogger'))
+//router.use('/data/thumbData/all',require('../middlewares/accessLogger'))
 module.exports = router;
