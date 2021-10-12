@@ -4,7 +4,7 @@ const mongo = require('../../drivers/mongo')
 async function accessLogger (req, res, next) {
   let request = {
     db: "bmx-bedata",
-    collection: "permitData",
+    collection: "accessLog",
     doc:{
     timestamp: `${moment().format()}`,
     host: {
