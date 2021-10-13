@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const mongo = require("../../drivers/mongo");
 
+router.use(require('../middlewares/accessLogger'))
+
 router.get("/data/thumbData/all", (req, res) => {
   const query = {
     mongo: {
@@ -10,7 +12,11 @@ router.get("/data/thumbData/all", (req, res) => {
       pipeline: [
         {
           $match: {},
-        },
+        },{
+          $project:{
+            _id:0,
+          }
+        }
       ],
     },
   };
@@ -47,6 +53,7 @@ router.get("/data/imageData/:uri", (req, res) => {
         {
           $project: {
             authorData: 0,
+            _id:0,
           },
         },
       ],
@@ -93,5 +100,4 @@ router.get("/data/permitData/all", (req, res) => {
   mongo.aggregate(query).then((result) => res.json(result));
 });
 
-//router.use('/data/thumbData/all',require('../middlewares/accessLogger'))
 module.exports = router;

@@ -8,20 +8,17 @@ async function accessLogger (req, res, next) {
     collection: "accessLog",
     doc:{
     timestamp: `${moment().format()}`,
-    host: {
+    from: {
       ip: `${req.ip}`,
     },
     target: {
       protocol: `${req.protocol}`,
       url: `${req.url}`,
       originalURL: `${req.originalUrl}`,
-    },
-    server: {
-      routeMatched: `${req.route}`,
-    },
+    }
 }}
   };
-  await mongo.insertOne(request)
+  mongo.insertOne(request)
   next();
 };
 

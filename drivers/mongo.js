@@ -8,7 +8,7 @@ exports.find = async function find(req) {
   try {
     await mongo.connect();
     const collection = mongo.db(req.mongo.db).collection(req.mongo.collection);
-    const result = await collection.find(req.mongo.query);
+    const result = collection.find(req.mongo.query);
     return result;
   } finally {
     // Ensures that the client will close when you finish/error
