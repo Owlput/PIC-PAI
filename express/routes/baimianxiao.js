@@ -24,11 +24,11 @@ router.get("/data/thumbData/all", (req, res) => {
   res.header("Access-Control-Allow-Methods", "GET");
   mongo.aggregate(query).then((result) => res.json(result));
 });
-router.get("/data/imageData/:uri", (req, res) => {
+router.get("/data/workData/:uri", (req, res) => {
   const query = {
     mongo: {
       db: "bmx-bedata",
-      collection: "imageData",
+      collection: "workData",
       pipeline: [
         {
           $match: {
