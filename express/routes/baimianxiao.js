@@ -67,7 +67,7 @@ router.get("/data/permitData/all", (req, res) => {
   const query = {
     mongo: {
       db: "bmx-bedata",
-      collection: "permitData",
+      collection: "permitDataAuthor",
       pipeline: [
         {
           '$lookup': {
@@ -99,5 +99,43 @@ router.get("/data/permitData/all", (req, res) => {
   res.header("Access-Control-Allow-Methods", "GET");
   mongo.aggregate(query).then((result) => res.json(result));
 });
+router.get("/data/permitData/:uri",(req,res)=>{
+  const query = {
+    mongo: {
+      db: "bmx-bedata",
+      collection: "permitDataArtwork",
+      pipeline: [
+        {
+          '$match': {uri:req.params.uri}
+        }, {
+          '$lookup': {
+            'from': 'authorData', 
+            'localField': 'aId', 
+            'foreignField': 'authorId', 
+            'as': 'authorData'
+          }
+        }, {
+          '$addFields': {
+            'author': {
+              '$arrayElemAt': [
+                '$authorData', 0
+              ]
+            }
+          }
+        }, {
+          '$project': {
+            '_id': 0, 
+            'authorData': 0, 
+            'author._id': 0, 
+            'author.recentWorks': 0
+          }
+        }
+      ],
+    },
+  };
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET");
+  mongo.aggregate(query).then((result) => res.json(result[0]));
+})
 
 module.exports = router;
