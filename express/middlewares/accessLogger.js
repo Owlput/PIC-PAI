@@ -9,7 +9,7 @@ async function accessLogger (req, res, next) {
     doc:{
     timestamp: `${moment().format()}`,
     from: {
-      ip: `${req.ip}`,
+      ip: `${req.ips}`,
     },
     target: {
       protocol: `${req.protocol}`,

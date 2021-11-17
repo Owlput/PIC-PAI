@@ -10,10 +10,7 @@ exports.find = async function find(req) {
     const collection = mongo.db(req.mongo.db).collection(req.mongo.collection);
     const result = collection.find(req.mongo.query);
     return result;
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongo.close();
-  }
+  } catch(e) {console.log(e)}
 };
 exports.aggregate = async function aggregate(req) {
   try {
